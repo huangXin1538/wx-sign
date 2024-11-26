@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="test-panel">
+    <view class="title">签名功能测试</view>
+    <view class="info" wx:if="{{contractId}}">
+      测试合同ID: {{contractId}}
+    </view>
+    <button class="test-btn" bindtap="goToSign">
+      测试签名功能
+    </button>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/contracts/contracts",
+    "pages/sign/sign",
+    "pages/template/template",
+    "pages/template-edit/template-edit",
+    "pages/template-form/template-form",
+    "pages/sent/sent",
+    "pages/received/received",
+    "pages/template-preview/template-preview",
+    "pages/select-signer/select-signer"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "签字助手",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

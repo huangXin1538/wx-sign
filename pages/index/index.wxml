@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="header">
+    <text class="title">合同签署系统</text>
+  </view>
+  
+  <view class="button-group">
+    <button class="btn" bindtap="goToUpload">上传合同</button>
+    <button class="btn" bindtap="goToContracts">我的合同</button>
+  </view>
+</view>

@@ -1,0 +1,256 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+/* Contract Header */
+.contract-header {
+  background: #fff;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.contract-title {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.contract-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.info-item {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.status {
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+}
+
+.status.pending {
+  background: #fff7e6;
+  color: #fa8c16;
+}
+
+.status.signed {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.status.rejected {
+  background: #fff1f0;
+  color: #f5222d;
+}
+
+/* Contract Content */
+.contract-content {
+  flex: 1;
+  position: relative;
+  margin: 20rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-scroll {
+  flex: 1;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content-wrapper {
+  padding: 30rpx;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.content-text {
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Rich Text Styles */
+.content-text :first-child {
+  margin-top: 0;
+}
+
+.content-text p {
+  margin: 1em 0;
+}
+
+.content-text img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+}
+
+.content-text strong {
+  font-weight: bold;
+}
+
+.content-text em {
+  font-style: italic;
+}
+
+.content-text h1,
+.content-text h2,
+.content-text h3,
+.content-text h4,
+.content-text h5,
+.content-text h6 {
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.content-text h1 { font-size: 40rpx; }
+.content-text h2 { font-size: 36rpx; }
+.content-text h3 { font-size: 32rpx; }
+.content-text h4 { font-size: 30rpx; }
+.content-text h5 { font-size: 28rpx; }
+.content-text h6 { font-size: 26rpx; }
+
+.content-text ul,
+.content-text ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.content-text li {
+  margin: 0.5em 0;
+}
+
+/* Loading & Error States */
+.loading-state,
+.error-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.loading-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #07c160;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-state text {
+  font-size: 28rpx;
+  color: #ff4d4f;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Signature Section */
+.signature-section {
+  position: relative;
+  margin: 20rpx;
+}
+
+.signature-tip {
+  text-align: center;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.signature-area {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.signature-canvas {
+  width: 100% !important;
+  height: 400rpx !important;
+  background: #fff;
+  border: 2rpx solid #eee;
+  border-radius: 8rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.signature-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+  gap: 20rpx;
+}
+
+.action-btn {
+  min-width: 160rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  margin: 0;
+  padding: 0 30rpx;
+  border-radius: 35rpx;
+  background: #f5f5f5;
+  color: #666;
+}
+
+.action-btn.confirm {
+  background: #07c160;
+  color: #fff;
+}
+
+/* Bottom Bar */
+.bottom-bar {
+  padding: 20rpx;
+  display: flex;
+  gap: 20rpx;
+  background: #fff;
+  border-top: 1rpx solid #eee;
+}
+
+.sign-btn,
+.submit-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  margin: 0;
+  border-radius: 40rpx;
+}
+
+.sign-btn {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.submit-btn {
+  background: #07c160;
+  color: #fff;
+}
+
+.submit-btn[disabled] {
+  background: #9be6b4;
+  color: rgba(255,255,255,0.6);
+}

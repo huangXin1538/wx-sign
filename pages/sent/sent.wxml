@@ -1,0 +1,60 @@
+<!--pages/sent/sent.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">我发起的合同</text>
+  </view>
+
+  <view class="filter-bar">
+    <view class="filter-item {{status === 'all' ? 'active' : ''}}" bindtap="switchStatus" data-status="all">
+      全部
+    </view>
+    <view class="filter-item {{status === 'pending' ? 'active' : ''}}" bindtap="switchStatus" data-status="pending">
+      待签署
+    </view>
+    <view class="filter-item {{status === 'signed' ? 'active' : ''}}" bindtap="switchStatus" data-status="signed">
+      已签署
+    </view>
+    <view class="filter-item {{status === 'rejected' ? 'active' : ''}}" bindtap="switchStatus" data-status="rejected">
+      已拒绝
+    </view>
+  </view>
+
+  <view class="contract-list">
+    <view class="contract-item" wx:for="{{contracts}}" wx:key="_id">
+      <view class="contract-header">
+        <text class="contract-name">{{item.fileName}}</text>
+        <text class="contract-status {{item.status}}">{{item.statusText}}</text>
+      </view>
+      
+      <view class="contract-info">
+        <view class="info-row">
+          <text class="label">签署方：</text>
+          <text class="value">{{item.signerName || '未签署'}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">创建时间：</text>
+          <text class="value">{{item.createTime}}</text>
+        </view>
+        <view class="info-row" wx:if="{{item.signTime}}">
+          <text class="label">签署时间：</text>
+          <text class="value">{{item.signTime}}</text>
+        </view>
+      </view>
+      
+      <view class="contract-actions">
+        <button class="action-btn view" bindtap="viewContract" data-id="{{item._id}}">查看</button>
+        <button wx:if="{{item.status === 'pending'}}" class="action-btn share" open-type="share" data-id="{{item._id}}">转发</button>
+        <button wx:if="{{item.status === 'signed'}}" class="action-btn download" bindtap="downloadContract" data-id="{{item._id}}">下载</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-tip" wx:if="{{!contracts.length}}">
+    <image class="empty-icon" src="/images/empty.svg" mode="aspectFit"></image>
+    <text>暂无{{statusText}}的合同</text>
+  </view>
+
+  <view class="float-btn" bindtap="createContract">
+    <image class="btn-icon" src="/images/add.svg" mode="aspectFit"></image>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+<!--pages/sign/sign.wxml-->
+<view class="container">
+  <!-- Contract Header -->
+  <view class="contract-header">
+    <view class="contract-title">{{contractTitle || '未命名合同'}}</view>
+    <view class="contract-info">
+      <text class="info-item">合同编号：{{contractNo || '未分配'}}</text>
+      <text class="info-item">创建时间：{{createTime}}</text>
+      <text class="status {{statusClass}}">{{statusText}}</text>
+    </view>
+  </view>
+
+  <!-- Contract Content -->
+  <view class="contract-content">
+    <view wx:if="{{loading}}" class="loading-state">
+      <view class="loading-icon"></view>
+      <text>加载中...</text>
+    </view>
+
+    <view wx:elif="{{error}}" class="error-state">
+      <icon type="warn" size="64"></icon>
+      <text>{{errorMessage || '加载失败'}}</text>
+    </view>
+
+    <block wx:else>
+      <scroll-view scroll-y class="content-scroll" enhanced show-scrollbar="{{false}}">
+        <view class="content-wrapper">
+          <rich-text 
+            class="content-text" 
+            nodes="{{contractContent}}"
+            space="nbsp"
+            user-select
+          />
+        </view>
+      </scroll-view>
+    </block>
+  </view>
+
+  <!-- Signature Section -->
+  <block wx:if="{{showSignature}}">
+    <view class="signature-section">
+      <view class="signature-tip">请在下方区域签名</view>
+      <view class="signature-area">
+        <canvas
+          type="2d"
+          id="signatureCanvas"
+          class="signature-canvas"
+          bindtouchstart="handleTouchStart"
+          bindtouchmove="handleTouchMove"
+          bindtouchend="handleTouchEnd"
+        ></canvas>
+        <view class="signature-actions">
+          <button class="action-btn" bindtap="clearSignature">重签</button>
+          <button class="action-btn confirm" bindtap="confirmSignature">确认</button>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Bottom Bar -->
+  <view class="bottom-bar">
+    <button class="sign-btn" bindtap="toggleSignature">
+      {{showSignature ? '取消签名' : '开始签名'}}
+    </button>
+    <button class="submit-btn" bindtap="submitContract" disabled="{{!canSubmit}}">
+      提交合同
+    </button>
+  </view>
+</view>

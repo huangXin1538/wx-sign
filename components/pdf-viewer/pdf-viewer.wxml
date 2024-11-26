@@ -1,0 +1,42 @@
+<view class="pdf-viewer">
+  <view class="pdf-container">
+    <view class="pdf-content">
+      <block wx:if="{{pages.length > 0}}">
+        <view class="pdf-page" wx:for="{{pages}}" wx:key="index">
+          <image 
+            src="{{item}}"
+            mode="widthFix"
+            style="width: {{width * scale}}px; transform: scale({{scale}});"
+            class="pdf-page-image {{currentPage === index + 1 ? 'current' : ''}}"
+            bindtap="onPageTap" 
+            data-index="{{index}}"
+          />
+        </view>
+      </block>
+      <block wx:else>
+        <view class="loading-state">
+          <view class="loading-icon"></view>
+          <text>PDF加载中...</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="pdf-controls" wx:if="{{pages.length > 0}}">
+    <view class="page-controls">
+      <button class="control-button {{currentPage <= 1 ? 'control-button-disabled' : ''}}" 
+              bindtap="prevPage" 
+              disabled="{{currentPage <= 1}}">上一页</button>
+      <text class="page-info">{{currentPage}}/{{totalPages}}</text>
+      <button class="control-button {{currentPage >= totalPages ? 'control-button-disabled' : ''}}" 
+              bindtap="nextPage" 
+              disabled="{{currentPage >= totalPages}}">下一页</button>
+    </view>
+    
+    <view class="zoom-controls">
+      <button class="zoom-button" bindtap="zoomOut" disabled="{{scale <= 0.5}}">缩小</button>
+      <text class="zoom-text">{{scale * 100}}%</text>
+      <button class="zoom-button" bindtap="zoomIn" disabled="{{scale >= 2}}">放大</button>
+    </view>
+  </view>
+</view>

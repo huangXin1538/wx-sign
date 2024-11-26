@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "pdf-viewer": "/components/pdf-viewer/pdf-viewer"
+  }
+}

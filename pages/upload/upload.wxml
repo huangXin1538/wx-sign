@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="upload-section">
+    <button class="upload-btn" bindtap="chooseFile">选择合同文件</button>
+    <view class="file-info" wx:if="{{tempFilePath}}">
+      <text>已选择文件</text>
+      <text class="file-name">{{fileName}}</text>
+    </view>
+  </view>
+
+  <view class="button-section" wx:if="{{tempFilePath}}">
+    <button class="submit-btn" bindtap="uploadContract">上传合同</button>
+    <button class="share-btn" open-type="share" wx:if="{{fileID}}">转发给签署方</button>
+  </view>
+</view>

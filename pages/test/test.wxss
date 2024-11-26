@@ -1,0 +1,31 @@
+.container {
+  padding: 40rpx;
+}
+
+.test-panel {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 40rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+
+.info {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+  word-break: break-all;
+}
+
+.test-btn {
+  background: #07c160;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+}

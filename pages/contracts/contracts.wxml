@@ -1,0 +1,47 @@
+<!--pages/contracts/contracts.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">电子合同</text>
+  </view>
+
+  <view class="menu-grid">
+    <view class="menu-item" bindtap="navigateToTemplates">
+      <image class="menu-icon" src="/images/template.png" mode="aspectFit"></image>
+      <text class="menu-text">合同模板</text>
+      <text class="menu-desc">选择模板发起合同</text>
+    </view>
+    <view class="menu-item" bindtap="navigateToSent">
+      <image class="menu-icon" src="/images/sent.png" mode="aspectFit"></image>
+      <text class="menu-text">我发起的</text>
+      <text class="menu-desc">查看我发起的合同</text>
+    </view>
+    <view class="menu-item" bindtap="navigateToReceived">
+      <image class="menu-icon" src="/images/received.png" mode="aspectFit"></image>
+      <text class="menu-text">我签署的</text>
+      <text class="menu-desc">查看待签署和已签署</text>
+    </view>
+  </view>
+
+  <view class="recent-section">
+    <view class="section-header">
+      <text class="section-title">最近合同</text>
+      <text class="section-more" bindtap="viewMore">查看更多</text>
+    </view>
+
+    <view class="contract-list">
+      <view class="contract-item" wx:for="{{recentContracts}}" wx:key="_id" bindtap="viewContract" data-id="{{item._id}}">
+        <view class="contract-info">
+          <text class="contract-name">{{item.name || item.templateName || '未命名合同'}}</text>
+          <text class="contract-party">{{item.counterpartyName || '未知对方'}}</text>
+          <text class="contract-time">{{item.createTime}}</text>
+        </view>
+        <view class="contract-status {{item.status}}">{{item.statusText}}</view>
+      </view>
+
+      <view class="empty-tip" wx:if="{{!recentContracts.length}}">
+        <image class="empty-icon" src="/images/empty.png"></image>
+        <text>暂无最近合同</text>
+      </view>
+    </view>
+  </view>
+</view>

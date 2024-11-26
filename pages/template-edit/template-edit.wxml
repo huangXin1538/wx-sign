@@ -1,0 +1,41 @@
+<!--pages/template-edit/template-edit.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">模板管理</view>
+    <view class="button-group">
+      <button class="upload-btn" bindtap="uploadWord">上传Word</button>
+      <button class="add-btn" bindtap="addTemplate">新建模板</button>
+    </view>
+  </view>
+
+  <view class="template-list" wx:if="{{templates.length > 0}}">
+    <view class="template-item" wx:for="{{templates}}" wx:key="_id">
+      <view class="template-info">
+        <image class="template-icon" src="/images/template.png"></image>
+        <view class="template-text">
+          <text class="template-name">{{item.name}}</text>
+          <text class="template-time">{{item.createTime}}</text>
+        </view>
+      </view>
+      <view class="template-actions">
+        <view class="action-btn edit" bindtap="editTemplate" data-id="{{item._id}}">
+          <image class="action-icon" src="/images/edit.png"></image>
+          <text>编辑</text>
+        </view>
+        <view class="action-btn preview" bindtap="previewTemplate" data-id="{{item._id}}">
+          <image class="action-icon" src="/images/preview.png"></image>
+          <text>预览</text>
+        </view>
+        <view class="action-btn delete" bindtap="deleteTemplate" data-id="{{item._id}}">
+          <image class="action-icon" src="/images/delete.png"></image>
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-tip" wx:else>
+    <image class="empty-icon" src="/images/empty.png"></image>
+    <text>暂无模板，请创建或上传</text>
+  </view>
+</view>

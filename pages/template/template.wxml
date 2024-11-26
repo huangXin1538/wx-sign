@@ -1,0 +1,25 @@
+<!--pages/template/template.wxml-->
+<view class="container">
+  <view class="template-content">
+    <view class="template-header">
+      <text class="template-title">{{template.name}}</text>
+      <text class="template-desc">{{template.description}}</text>
+    </view>
+    
+    <view class="template-preview">
+      <view class="preview-title">合同预览</view>
+      <image src="{{template.preview}}" mode="widthFix" class="preview-image"></image>
+    </view>
+
+    <view class="template-tips">
+      <view class="tips-title">签署说明</view>
+      <view class="tips-item">1. 合同内容仅供参考，可根据实际情况修改</view>
+      <view class="tips-item">2. 转发给签署方后，对方可在线签署</view>
+      <view class="tips-item">3. 签署完成后，双方可下载带签名的合同文件</view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <button class="share-btn" open-type="share">转发给签署人</button>
+  </view>
+</view>

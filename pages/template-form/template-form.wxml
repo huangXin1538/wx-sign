@@ -1,0 +1,68 @@
+<!--pages/template-form/template-form.wxml-->
+<view class="container">
+  <form bindsubmit="submitForm">
+    <view class="form-group">
+      <view class="form-item">
+        <text class="label">模板名称</text>
+        <input class="input" name="name" value="{{template.name}}" placeholder="请输入模板名称"/>
+      </view>
+
+      <view class="form-item">
+        <text class="label">模板描述</text>
+        <textarea class="textarea" name="description" value="{{template.description}}" placeholder="请输入模板描述"/>
+      </view>
+
+      <view class="form-item">
+        <text class="label">模板图标</text>
+        <view class="upload-box" bindtap="chooseIcon">
+          <image wx:if="{{template.icon}}" class="preview" src="{{template.icon}}" mode="aspectFit"></image>
+          <view wx:else class="upload-placeholder">
+            <image class="upload-icon" src="/images/upload.png"></image>
+            <text>点击上传图标</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <text class="label">预览图片</text>
+        <view class="upload-box preview-box" bindtap="choosePreview">
+          <image wx:if="{{template.preview}}" class="preview" src="{{template.preview}}" mode="aspectFit"></image>
+          <view wx:else class="upload-placeholder">
+            <image class="upload-icon" src="/images/upload.png"></image>
+            <text>点击上传预览图</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <text class="label">合同内容</text>
+        <view class="content-box">
+          <view class="section-list">
+            <view class="section-item" wx:for="{{template.sections}}" wx:key="index">
+              <view class="section-header">
+                <text class="section-title">第{{index + 1}}条</text>
+                <view class="section-actions">
+                  <view class="action-btn" bindtap="moveSection" data-index="{{index}}" data-direction="up" wx:if="{{index > 0}}">
+                    <image class="action-icon" src="/images/up.png"></image>
+                  </view>
+                  <view class="action-btn" bindtap="moveSection" data-index="{{index}}" data-direction="down" wx:if="{{index < template.sections.length - 1}}">
+                    <image class="action-icon" src="/images/down.png"></image>
+                  </view>
+                  <view class="action-btn delete" bindtap="deleteSection" data-index="{{index}}">
+                    <image class="action-icon" src="/images/delete.png"></image>
+                  </view>
+                </view>
+              </view>
+              <textarea class="section-content" value="{{item.content}}" bindinput="updateSection" data-index="{{index}}" placeholder="请输入条款内容"/>
+            </view>
+          </view>
+          <button class="add-section-btn" type="default" bindtap="addSection">添加条款</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-footer">
+      <button class="submit-btn" type="primary" form-type="submit">保存模板</button>
+    </view>
+  </form>
+</view>

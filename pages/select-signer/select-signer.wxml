@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="form-panel">
+    <view class="form-title">填写基本信息</view>
+    
+    <view class="form-group">
+      <view class="form-item">
+        <text class="label">签署人姓名</text>
+        <input 
+          class="input" 
+          type="text" 
+          placeholder="请输入签署人姓名" 
+          value="{{signerName}}"
+          bindinput="onInputSignerName"
+        />
+      </view>
+
+      <view class="form-item">
+        <text class="label">监护人姓名</text>
+        <input 
+          class="input" 
+          type="text" 
+          placeholder="请输入监护人姓名" 
+          value="{{guardianName}}"
+          bindinput="onInputGuardianName"
+        />
+      </view>
+    </view>
+
+    <view class="tips">
+      * 请确保信息填写正确，签署后将无法修改
+    </view>
+
+    <button 
+      class="share-btn" 
+      type="primary" 
+      open-type="share"
+      bindtap="submitAndShare"
+      loading="{{loading}}"
+      disabled="{{!formComplete || loading}}"
+    >
+      转发给签署人
+    </button>
+  </view>
+</view> 

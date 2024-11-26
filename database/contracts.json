@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "read": "auth.openid != null",
+    "write": "auth.openid != null",
+    "create": "auth.openid != null",
+    "update": "auth.openid != null || doc.creatorId == auth.openid"
+  }
+}

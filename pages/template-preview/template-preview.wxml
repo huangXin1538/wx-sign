@@ -1,0 +1,33 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">
+    <view class="loading-icon"></view>
+    <text>加载中...</text>
+  </view>
+
+  <view wx:elif="{{error}}" class="error">
+    <icon type="warn" size="64"></icon>
+    <text>{{error}}</text>
+  </view>
+
+  <block wx:elif="{{template}}">
+    <view class="template-preview">
+      <view class="header">
+        <text class="title">{{template.name || '未命名模板'}}</text>
+        <text class="time">创建时间：{{template.createTime}}</text>
+      </view>
+
+      <scroll-view scroll-y class="content">
+        <rich-text 
+          nodes="{{template.content}}" 
+          space="nbsp"
+          user-select
+        />
+      </scroll-view>
+    </view>
+
+    <view class="actions">
+      <button class="btn" type="primary" bindtap="sendToSign">转发给签署人</button>
+      <button class="btn" bindtap="back">返回</button>
+    </view>
+  </block>
+</view> 

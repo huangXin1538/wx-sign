@@ -1,0 +1,19 @@
+{
+  "name": "wx-sign",
+  "version": "1.0.0",
+  "description": "微信小程序电子签名系统",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "微信小程序",
+    "电子签名"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pdfjs-dist": "^2.16.105",
+    "weui-miniprogram": "^1.2.7"
+  }
+}
