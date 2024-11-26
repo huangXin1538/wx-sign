@@ -286,8 +286,50 @@ Page({
     try {
       wx.showLoading({ title: '提交合同中' })
       
-      // TODO: 实现合同提交逻辑
+      // 1. 获取签名图片的base64数据
+      const { tempFilePath } = await wx.canvasToTempFilePath({
+        canvas: this.canvas,
+        fileType: 'png'
+      })
       
+      // 将临时文件转为base64
+      const signatureBase64 = await new Promise((resolve, reject) => {
+        wx.getFileSystemManager().readFile({
+          filePath: tempFilePath,
+          encoding: 'base64',
+          success: res => resolve(res.data),
+          fail: err => reject(err)
+        })
+      })
+      
+      // 2. 获取当前合同内容
+      const db = wx.cloud.database()
+      const contract = await db.collection('contracts').doc(this.data.contractId).get()
+      
+      // 3. 在合同内容末尾添加签名图片
+      const signatureHtml = `
+        <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+          <p style="margin-bottom: 10px;">签名：</p>
+          <img src="data:image/png;base64,${signatureBase64}" 
+               style="max-width: 300px; height: auto;" 
+               alt="签名" />
+          <p style="margin-top: 10px; color: #666; font-size: 12px;">
+            签署时间：${new Date().toLocaleString()}
+          </p>
+        </div>
+      `
+      
+      const updatedContent = contract.data.content + signatureHtml
+      
+      // 4. 更新合同内容和状态
+      await db.collection('contracts').doc(this.data.contractId).update({
+        data: {
+          content: updatedContent,
+          status: 'signed',
+          signedTime: db.serverDate()
+        }
+      })
+
       wx.hideLoading()
       wx.showToast({
         title: '提交成功',
